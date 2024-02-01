@@ -20,5 +20,7 @@ public class Main {
         a1.editContactByName(s1);
         System.out.println(s1.display(p1));
 
+        a1.deletePersonByName();
+        System.out.println(s1.display(p1));
     }
 }
