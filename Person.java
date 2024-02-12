@@ -59,16 +59,30 @@ public class Person {
         return PhoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
-        PhoneNumber = phoneNumber;
+    public void setPhoneNumber(int phoneNumber) throws CustomException {
+
+
+        String s=String.valueOf(phoneNumber);
+
+        if (s.matches("^[6-9]{1}[0-9]{9}+$")){
+            PhoneNumber = phoneNumber;
+        }
+        else{
+            throw new CustomException("Invalid Phone number Enter a valid phone number");
+        }
+
     }
 
     public String getEmail() {
         return Email;
     }
 
-    public void setEmail(String email) {
-        Email = email;
+    public void setEmail(String email) throws CustomException {
+        if (email.matches("[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}")) {
+            this.Email = email;
+        } else {
+            throw new CustomException("Invalid Email. Please enter a valid email address.");
+        }
     }
 
     private String Email;

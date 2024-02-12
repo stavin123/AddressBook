@@ -7,7 +7,7 @@ public class AddressBookService {
         return p.getFirstName()+" "+p.getLastName()+" "+p.getCity()+" "+p.getState()+" "+ p.getEmail()+" "+p.getPhoneNumber()+ " "+p.getZip();
     }
 
-    public void setValues(Person p) {
+    public void setValues(Person p) throws CustomException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter first name");
         String fn = sc.next();
@@ -21,27 +21,16 @@ public class AddressBookService {
         System.out.println("Enter state");
         String state = sc.next();
         p.setState(state);
+
         System.out.println("Enter email");
-        Pattern pat=Pattern.compile("^[a-zA-Z0-9_.$%&!]+@[a-zA-Z.]");
         String email = sc.next();
-        Matcher mat=pat.matcher(email);
-        if (mat.matches()) {
-            p.setEmail(email);
-        }
-        else
-            System.out.println("enter a valid email");
+        p.setEmail(email);
+
+//            //System.out.println("enter a valid email");
         System.out.println("Enter phn no");
-        Pattern pa=Pattern.compile("^[6-9]{1}[0-9]{9}+$");
         int phNumber = sc.nextInt();
-        String s=String.valueOf(phNumber);
-        Matcher m=pa.matcher(s);
-        if (m.matches()){
         p.setPhoneNumber(phNumber);
-        }
-        else {
-            System.out.println("ph no. doesn't have 10 digits");
-            System.exit(0);
-        }
+
         System.out.println("Enter zip");
         int zip = sc.nextInt();
         p.setZip(zip);

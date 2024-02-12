@@ -9,7 +9,7 @@ public class AddressBookHashFunction {
     HashMap<Integer,Person> contactList = new HashMap<>();
     List<Integer> n1 = new ArrayList<>();
 
-    public void editContactByName(AddressBookService address) {
+    public void editContactByName(AddressBookService address) throws CustomException {
         Scanner sc = new Scanner(System.in);
         System.out.println("Enter the First Name of the person you want to edit:");
         String name = sc.next();
