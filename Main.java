@@ -7,6 +7,9 @@ public class Main {
         AddressBookService s1 =new AddressBookService();
         AddressBookHashFunction a1=new AddressBookHashFunction();
 
+
+        s1.setValues(p1);
+
         s1.setValues(p1);
 
 

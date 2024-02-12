@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+import java.util.*;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -5,6 +7,7 @@ import java.util.Scanner;
 
 public class AddressBookHashFunction {
     HashMap<Integer,Person> contactList = new HashMap<>();
+    List<Integer> n1 = new ArrayList<>();
 
     public void editContactByName(AddressBookService address) {
         Scanner sc = new Scanner(System.in);
