@@ -1,6 +1,7 @@
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import java.util.stream.Stream;
 
 public class AddressBookService {
     public String display(Person p){
@@ -9,32 +10,34 @@ public class AddressBookService {
 
     public void setValues(Person p) throws CustomException {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Enter first name");
-        String fn = sc.next();
-        p.setFirstName(fn);
-        System.out.println("Enter last name");
-        String ln = sc.next();
-        p.setLastName(ln);
-        System.out.println("Enter city");
-        String city = sc.next();
-        p.setCity(city);
-        System.out.println("Enter state");
-        String state = sc.next();
-        p.setState(state);
+        // Using Stream API for input processing
+        Stream.of("First Name", "Last Name", "City", "State", "Email", "Phone Number", "Zip")
+                .forEach(field -> {
+                    System.out.println("Enter " + field);
+                    switch (field) {
+                        case "First Name" -> p.setFirstName(sc.next());
+                        case "Last Name" -> p.setLastName(sc.next());
+                        case "City" -> p.setCity(sc.next());
+                        case "State" -> p.setState(sc.next());
+                        case "Email" -> {
+                            try {
+                                p.setEmail(sc.next());
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
+                        case "Phone Number" -> {
+                            try {
+                                p.setPhoneNumber(sc.nextInt());
+                            } catch (Exception e) {
+                                throw new RuntimeException(e);
+                            }
+                        }
 
-        System.out.println("Enter email");
-        String email = sc.next();
-        p.setEmail(email);
-
-//            //System.out.println("enter a valid email");
-        System.out.println("Enter phn no");
-        int phNumber = sc.nextInt();
-        p.setPhoneNumber(phNumber);
-
-        System.out.println("Enter zip");
-        int zip = sc.nextInt();
-        p.setZip(zip);
+                        case "Zip" -> p.setZip(sc.nextInt());
+                    }
+                });
     }
-
 }
+
 
